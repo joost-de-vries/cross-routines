@@ -1,0 +1,44 @@
+pluginManagement {
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.id == "kotlin-multiplatform") {
+                useModule("org.jetbrains.kotlin:kotlin-gradle-plugin:${requested.version}")
+            }
+            if (requested.id.id == "com.android.library") {
+                useModule("com.android.tools.build:gradle:${requested.version}")
+            }
+            if (requested.id.id == "com.android.application") {
+                useModule("com.android.tools.build:gradle:${requested.version}")
+            }
+        }
+    }
+
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://kotlin.bintray.com/kotlinx" }
+        maven { url "https://kotlin.bintray.com/kotlin-dev" }
+        maven { url "https://kotlin.bintray.com/kotlin-eap" }
+        maven { url "https://jetbrains.bintray.com/kotlin-native-dependencies" }
+        maven { url "https://plugins.gradle.org/m2/" }
+
+    }
+}
+rootProject.name = 'kotlin.talk'
+enableFeaturePreview('GRADLE_METADATA')
+
+
+def module(String path) {
+    int i = path.lastIndexOf('/')
+    def name = path.substring(i + 1)
+    include(name)
+    project(":$name").projectDir = file(path)
+}
+//include ':shared'
+//include ':androidApp'
+//include ':js'
+//include ':jvm'
+
+//module('shared')
+module('js/example-frontend-js')
+module('jvm')

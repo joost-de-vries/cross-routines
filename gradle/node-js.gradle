@@ -1,0 +1,36 @@
+/*
+ * Copyright 2016-2018 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+ */
+
+apply plugin: 'com.moowork.node'
+
+node {
+    version = "8.9.3"
+    npmVersion = "5.7.1"
+    download = true
+    nodeModulesDir = file(buildDir)
+}
+
+// Configures testing for JS modules
+
+task prepareNodePackage(type: Copy) {
+    from("npm") {
+//        // Postpone expansion of package.json until we configure version property in build.gradle
+//        def copySpec = it
+//        afterEvaluate {
+//            copySpec.expand(project.properties + [kotlinDependency: ""])
+//        }
+    }
+    into "$node.nodeModulesDir"
+}
+
+npmInstall.dependsOn prepareNodePackage
+
+// Workaround the problem with Node downloading
+repositories.whenObjectAdded {
+    if (it instanceof IvyArtifactRepository) {
+        metadataSources {
+            artifact()
+        }
+    }
+}
