@@ -39,6 +39,7 @@ def module(String path) {
 //include ':js'
 //include ':jvm'
 
-//module('shared')
+module('shared')
+module('shared')
 module('js/example-frontend-js')
 module('jvm')

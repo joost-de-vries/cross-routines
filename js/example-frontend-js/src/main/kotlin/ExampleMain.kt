@@ -27,9 +27,10 @@ import org.w3c.dom.*
 import kotlin.browser.*
 import kotlin.coroutines.*
 import kotlin.math.*
+import sample.Platform
 
 fun main(args: Array<String>) {
-    println("Starting example application...")
+    println("Starting example ${Platform.name} application...")
     document.addEventListener("DOMContentLoaded", {
         Application().start()
     })

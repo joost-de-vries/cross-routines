@@ -9,7 +9,7 @@ apply from: rootProject.file('gradle/node-js.gradle')
 dependencies {
     compile "org.jetbrains.kotlinx:kotlinx-html-js:$html_version"
     compile "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutines_version"
-
+    compile project(':shared')
 }
 
 compileKotlin2Js {
