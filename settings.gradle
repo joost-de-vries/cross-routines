@@ -40,6 +40,5 @@ def module(String path) {
 //include ':jvm'
 
 module('shared')
-module('shared')
 module('js/example-frontend-js')
 module('jvm')
