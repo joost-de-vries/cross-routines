@@ -41,4 +41,5 @@ def module(String path) {
 
 module('shared')
 module('js/example-frontend-js')
+module('js/js')
 module('jvm')
